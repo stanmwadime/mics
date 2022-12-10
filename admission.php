@@ -108,6 +108,33 @@ echo $comment;
 echo "<br>";
 echo $gender;
 ?>
+
+<?php
+$servername="localhost";
+$username="username";
+$password="password";
+
+// Connect to the database
+try{
+  $conn = new PDO("mysql:host=$servername;dbname=myDB", $username, $password);
+  // set the PDO error mode to exception
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  echo "Connected successfully";
+} catch(PDOException $e) {
+  echo "Connection failed: " . $e->getMessage();
+}
+
+// Check for form submission
+if (isset($_POST['submit'])) {
+    // Get the form data
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+
+    // Insert the data into the database
+    $mysqli->query("INSERT INTO table_name (name, email) VALUES ('$name', '$email')");
+}
+?>
+
     <footer
         <p>MICS © 2023
         <a href="mailto:info@mics.ac.ke">info@mics.ac.ke</a></p>
